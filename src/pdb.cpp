@@ -1142,7 +1142,7 @@ void PdbReader::read_pdb_line(const char* line, size_t len, Structure& st,
   } else if (is_record_type(line, "MODEL")) {
     if (model && chain)
       wrong("MODEL without ENDMDL?");
-    std::string name = std::to_string(read_int(line+10, 4));
+    std::string name = std::to_string(read_int(line+6, 8));
     model = &st.find_or_add_model(name);
     if (!model->chains.empty())
       wrong("duplicate MODEL number: " + name);
